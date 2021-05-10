@@ -24,13 +24,15 @@ public class StudentTaxa extends Student{
         TipResidence = TipResidence;
     }
     @Override
-    public String toString()
-    {
-        if(TipResidence == 3)
-        return StudentLastName + " " + StudentFatherInitial + ". " + StudentFirstName + " have " + StudentAge + " years old and lives at home. " ;
-        else if(TipResidence == 2)
+    public String toString() {
+        if (TipResidence == 3) {
+            return StudentLastName + " " + StudentFatherInitial + ". " + StudentFirstName + " have " + StudentAge + " years old and lives at home. ";
+        } else if (TipResidence == 2) {
             return StudentLastName + " " + StudentFatherInitial + ". " + StudentFirstName + " have " + StudentAge + " years old and lives in rent. " ;
-        else  return StudentLastName + " " + StudentFatherInitial + ". " + StudentFirstName + " have " + StudentAge + " years old and lives in the dormitory. " ;
+        }
+        else {
+            return StudentLastName + " " + StudentFatherInitial + ". " + StudentFirstName + " have " + StudentAge + " years old and lives in the dormitory. " ;
+        }
 
 
     }

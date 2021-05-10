@@ -1,6 +1,9 @@
 package Catalog;
 
 public class Student {
+    //TODO: Name convention!! -> https://github.com/soaregeorgiana/pao-labs/blob/master/lab%202/lab2/src/ro/unibuc/lab/basics/Naming.java
+    // # mi-am dat seama prea tarziu si am considerat ca nu are rost sa mai modific#
+
     protected String StudentLastName;
     protected String StudentFirstName;
     protected char StudentFatherInitial;

@@ -1,39 +1,29 @@
 package Catalog;
-import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+
 public class CatalogService {
 
-    public void AddStudentAtNote( Student student, StudentGrades studentGrades)
-    {
-
-        Student[] studentGradesArray = studentGrades.getStudentwithSNote();
-        System.out.println();
-        System.out.println("The initial vector of student is:");
-        for(int i = 0; i < studentGradesArray.length; i++)
-            System.out.println(studentGradesArray[i] + " ");
-        int n = studentGradesArray.length;
-        Student[] new_StudentGrades = new Student[n+1];
-
-        for(int i = 0; i < n; i++) {
-            new_StudentGrades[i] = studentGradesArray[i];
-        }
-        new_StudentGrades[n] = student;
-
-        System.out.println();
-        System.out.println("The final vector of student is:");
-        for(int i = 0; i < new_StudentGrades.length; i++)
-            System.out.println(new_StudentGrades[i] + " ");
-
-        studentGrades.setStudentwithSNote(new_StudentGrades);
+    /** Array-urile din etapa anterioara cu colectii*/
+    public void addStudentAtNote( Student student, StudentGrades studentGrades) {
+        AuditService auditService = new AuditService();
+        auditService.WriteActionsToCSVFile("addStudentAtNote");
+        ArrayList<Student> students = studentGrades.getStudentwithSNote();
+        students.add(student);
+        studentGrades.setStudentwithSNote(students);
     }
-    public void displaySubjectProf( Subject subjects[], Professor professor)
+
+    public void displaySubjectProf( ArrayList<Subject> subjects, Professor professor)
     {
+        AuditService auditService = new AuditService();
+        auditService.WriteActionsToCSVFile("displaySubjectProfessor");
         int gasit = 0;
         System.out.println("The " + professor.getProfessorLastName()+ " teachers teaches:");
 
-        for (int i = 0; i < subjects.length; i++)
+        for (int i = 0; i < subjects.size(); i++)
         {
-            Subject subject = subjects[i];
+            Subject subject = subjects.get(i);
            if (subject.getProfessor().getProfessorLastName() == professor.getProfessorLastName()
                 && subject.getProfessor().getPorfessorFirstName()  == professor.getPorfessorFirstName()) {
                System.out.println("- " + subject.getSubjectName() + " ");
@@ -42,61 +32,61 @@ public class CatalogService {
         }
         if(gasit == 0) System.out.println("NONE!");
     }
-
-    public void removeStudent( StudentGrades studentGrades)
+    public void removeStudentAtNote( StudentGrades studentGrades)
     {
-        Student[] studentGradesArray = studentGrades.getStudentwithSNote();
+        AuditService auditService = new AuditService();
+        auditService.WriteActionsToCSVFile("removeStudentAtNote");
+        ArrayList<Student> students = studentGrades.getStudentwithSNote();
+        int cnt = students.size();
 
-        System.out.println();
-        System.out.println("The initial vector of student is:");
-        for(int i = 0; i < studentGradesArray.length; i++)
-            System.out.println(studentGradesArray[i] + " ");
-
-        int n = studentGradesArray.length;
-        Student[] new_StudentGrades = new Student[n-1];
-
-        for(int i = 0; i < n-1; i++) {
-            new_StudentGrades[i] = studentGradesArray[i];
-        }
-
-        System.out.println();
-        System.out.println("The final vector of student is:");
-        for(int i = 0; i < new_StudentGrades.length; i++)
-            System.out.println(new_StudentGrades[i] + " ");
-
-        studentGrades.setStudentwithSNote(new_StudentGrades);
+        ///stergem ultimul student adaugat
+        students.remove(cnt-1);
+        studentGrades.setStudentwithSNote(students);
     }
-    public void removeAllStudent( StudentGrades studentGrades)
+    public void removeAllStudentAtNote( StudentGrades studentGrades)
     {
-        Student[] studentGradesArray = studentGrades.getStudentwithSNote();
+        AuditService auditService = new AuditService();
+        auditService.WriteActionsToCSVFile("removeAllStudentAtNote");
+        ArrayList<Student> students = studentGrades.getStudentwithSNote();
 
-        int n = studentGradesArray.length;
-        Student[] new_StudentGrades = new Student[0];
-        studentGrades.setStudentwithSNote(new_StudentGrades);
-        System.out.println("\nEmpty!");
-    }
-    public void sortStudentsAlphabetically( Student  students[])
-    {
-        NameComparator nameComparator = new NameComparator();
-        Arrays.sort(students,nameComparator);
+        ///stergem tot studentii
+        students.clear();
+        studentGrades.setStudentwithSNote(students);
     }
 
-    public void displayFatherV(Student students[])
+    public void sortStudentsAlphabetically(  ArrayList<Student> students)
     {
+        AuditService auditService = new AuditService();
+        auditService.WriteActionsToCSVFile("sortAlphabeticallyStudent");
+
+        ///sortam toti studentii alfabetic
+        Collections.sort(students, new NameComparator());
+    }
+
+    public void displayFatherV( ArrayList<Student> students)
+    {
+        AuditService auditService = new AuditService();
+        auditService.WriteActionsToCSVFile("displayFatherVocal");
         int gasit = 0;
         System.out.println("Students with the father's name that begin with AEIOU are: ");
-        for(int i = 0; i < students.length; i++)
-            if(students[i].getStudentFatherInitial() == 'A' || students[i].getStudentFatherInitial() == 'E' || students[i].getStudentFatherInitial() == 'I' || students[i].getStudentFatherInitial() == 'O' || students[i].getStudentFatherInitial() == 'U' )
-            {
-                gasit = 1;
-                System.out.println(students[i].getStudentLastName());
-            }
+
+        char[] allowedInitials = new char[]{'A', 'E', 'I', 'O', 'U'};
+        for(int i = 0; i < students.size(); i++) {
+            char charKey =  students.get(i).getStudentFatherInitial();
+            if (Arrays.binarySearch(allowedInitials, charKey)>=0)
+                {
+                    gasit = 1;
+                    System.out.println(students.get(i).getStudentLastName());
+                }
+        }
         if(gasit != 1)
         System.out.println("None!");
     }
     public void calculateSeniorityTeacher( Professor professorr)
     //In medie un profesor profeseaza pentru prima data la 24 de ani
     {
+        AuditService writeService = new AuditService();
+        writeService.WriteActionsToCSVFile("calculateSeniorityTeacher");
         int yearr = professorr.getProfessorAge() - 24;
         if(yearr > 0 )
         System.out.println( professorr.getPorfessorFirstName() + " " + professorr.getProfessorLastName() + " has been practicing for " + yearr + " years.");
@@ -106,11 +96,15 @@ public class CatalogService {
 
     public void displayYearOfBirthStudent(Student student)
     {
+        AuditService auditService = new AuditService();
+        auditService.WriteActionsToCSVFile("displayYearOfBirthStudent");
         int year = 2021 - student.getStudentAge();
         System.out.println( student.getStudentFirstName() + " " + student.getStudentLastName() + " was born in " + year + ".");
     }
     public void changeProfessorClass( ProfessorClass professor, Class clasa)
     {
+        AuditService auditService = new AuditService();
+        auditService.WriteActionsToCSVFile("changeProfessorClass");
         System.out.println("This professor has been moved from the " + professor.getIdClass() +" class to the " + clasa + " class." );
         professor.setIdClass(clasa.getNrClass());
     }

@@ -1,10 +1,13 @@
 package Catalog;
 
 public class Professor {
-    public    String ProfessorLastName;
-    public    String PorfessorFirstName;
-    public Integer ProfessorAge;
-    public Integer ProfessorSalary;
+    // TODO: Business logic related: de ce ai o proprietate pentru a stoca varsta si nimic legat de materia pe care o preda respectivul profesor
+    //  #Am ales ca materia sa fie predata de o lista de profesori,iar noi sa verificam daca respectivul preda materia accesand lista#
+    // Foloseste incapsularea -> atribute protected pentru ca aceasta clasa este parinte pentru ProfesorClass
+    protected  String ProfessorLastName;
+    protected  String PorfessorFirstName;
+    protected  Integer ProfessorAge;
+    protected  Integer ProfessorSalary;
 
     public Professor(String ProfessorLastName, String PorfessorFirstName, Integer ProfessorAge, Integer ProfessorSalary )
     {
@@ -13,6 +16,8 @@ public class Professor {
         this.ProfessorAge = ProfessorAge;
         this.ProfessorSalary = ProfessorSalary;
     }
+
+
     public Integer getProfessorAge() {
         return ProfessorAge;
     }
