@@ -6,23 +6,24 @@ public class Student {
 
     protected String StudentLastName;
     protected String StudentFirstName;
-    protected char StudentFatherInitial;
-    protected Integer StudentAge;
+    protected String StudentFatherInitial;
+    protected int StudentAge;
 
     public Student()
     {
         this.StudentLastName = "";
         this.StudentFirstName = "";
-        this.StudentFatherInitial = ' ';
+        this.StudentFatherInitial = "";
         this.StudentAge = 0;
     }
-    public Student(String StudentLastName,String StudentFirstName, char StudentFatherInitial,Integer StudentAge )
+    public Student(String StudentLastName,String StudentFirstName, String StudentFatherInitial,int StudentAge )
     {
         this.StudentLastName = StudentLastName;
         this.StudentFirstName = StudentFirstName;
         this.StudentFatherInitial = StudentFatherInitial;
         this.StudentAge = StudentAge;
     }
+
     public String getStudentLastName()
     {
         return  StudentLastName;
@@ -31,15 +32,15 @@ public class Student {
     {
         return StudentFirstName;
     }
-    public char getStudentFatherInitial()
+    public String getStudentFatherInitial()
     {
         return  StudentFatherInitial;
     }
-
-    public Integer getStudentAge()
+    public double getStudentAge()
     {
         return StudentAge;
     }
+
     public void setStudentLastName(String StudentLastName)
     {
         StudentLastName = StudentLastName;
@@ -53,7 +54,7 @@ public class Student {
         StudentFatherInitial = StudentFatherInitial;
     }
 
-    public void setStudentAge(Integer StudentAge)
+    public void setStudentAge(int StudentAge)
     {
         this.StudentAge = StudentAge;
     }

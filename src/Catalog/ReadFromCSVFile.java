@@ -1,5 +1,5 @@
 package Catalog;
-import Exceptions.FileReadingException;
+import Catalog.Exceptions.FileReadingException;
 import java.io.*;
 import java.io.IOException;
 import java.util.ArrayList;

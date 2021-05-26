@@ -9,7 +9,7 @@ public class StudentTaxa extends Student{
     {
         TipResidence = 0;
     }
-    public StudentTaxa(String StudentLastName, String StudentFirstName, char StudentFatherInitial, Integer StudentAge, Integer TipResidance)
+    public StudentTaxa(String StudentLastName, String StudentFirstName, String StudentFatherInitial, int StudentAge, Integer TipResidance)
     {
         super(StudentLastName,StudentFirstName,StudentFatherInitial,StudentAge);
         this.TipResidence = TipResidance;

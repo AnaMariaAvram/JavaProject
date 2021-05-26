@@ -1,5 +1,5 @@
 package Catalog;
-import Exceptions.FileWritingException;
+import Catalog.Exceptions.FileWritingException;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;

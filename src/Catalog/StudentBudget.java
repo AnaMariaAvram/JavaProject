@@ -9,7 +9,7 @@ public class StudentBudget extends Student {
         TipBursa = 0;
     }
 
-    public StudentBudget(String StudentLastName, String StudentFirstName, char StudentFatherInitial, Integer StudentAge, Integer TipBursa) {
+    public StudentBudget(String StudentLastName, String StudentFirstName,String StudentFatherInitial, int StudentAge, Integer TipBursa) {
         super(StudentLastName, StudentFirstName, StudentFatherInitial, StudentAge);
         this.TipBursa = TipBursa;
     }

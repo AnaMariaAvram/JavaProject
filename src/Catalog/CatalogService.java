@@ -70,9 +70,9 @@ public class CatalogService {
         int gasit = 0;
         System.out.println("Students with the father's name that begin with AEIOU are: ");
 
-        char[] allowedInitials = new char[]{'A', 'E', 'I', 'O', 'U'};
+        String [] allowedInitials = new String[]{"A", "E", "I", "O", "U"};
         for(int i = 0; i < students.size(); i++) {
-            char charKey =  students.get(i).getStudentFatherInitial();
+            String charKey =  students.get(i).getStudentFatherInitial();
             if (Arrays.binarySearch(allowedInitials, charKey)>=0)
                 {
                     gasit = 1;
@@ -98,7 +98,7 @@ public class CatalogService {
     {
         AuditService auditService = new AuditService();
         auditService.WriteActionsToCSVFile("displayYearOfBirthStudent");
-        int year = 2021 - student.getStudentAge();
+        int year = 2021 - (int)student.getStudentAge();
         System.out.println( student.getStudentFirstName() + " " + student.getStudentLastName() + " was born in " + year + ".");
     }
     public void changeProfessorClass( ProfessorClass professor, Class clasa)

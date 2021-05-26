@@ -1,4 +1,4 @@
-package Exceptions;
+package Catalog.Exceptions;
 
 public class FileReadingException extends Exception{
     public FileReadingException(String message, Throwable cause) {
